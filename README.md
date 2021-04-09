@@ -357,3 +357,7 @@ Terakhir kita bisa menambahkan css ke file **public/style.css** :
   gap: 10px;
 }
 ```
+
+## Thanks
+
+Semua codingan bisa di clone di link [Berikut ini](https://github.com/jemblonganvalley/batch8_kelas_malam_express_mysql.git)
