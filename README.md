@@ -1,97 +1,359 @@
----
+# Express menggunakan Query Builder bernama KNEX
 
+![pexels image](https://images.pexels.com/photos/4497195/pexels-photo-4497195.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)
+Apa itu query builder, mugkin teman teman familiar dengan query MYSQL yang seperti ini :
 
----
+```bash
+SELECT * FROM users WHERE id=1;
+```
 
-<h1 id="mysql-basic">MYSQL BASIC</h1>
-<p><img src="https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="mysql"><br>
-<small>image courtesy : <a href="https://www.pexels.com/@cookiecutter">https://www.pexels.com/@cookiecutter</a></small></p>
-<p><em>Menurut <a href="https://www.hostinger.co.id/tutorial/apa-itu-mysql">Hostinger.co.id</a></em>,</p>
-<blockquote>
-<p>MySQL adalah sistem manajemen database relasional open source (RDBMS) dengan client-server model. Sedangkan <a href="https://en.wikipedia.org/wiki/Relational_database_management_system">RDBMS</a> merupakan software untuk membuat dan mengelola database berdasarkan pada model relasional.</p>
-</blockquote>
-<p>Sebelum dibahas lebih lanjut, ada baiknya bagi kita untuk mengetahui sejarah singkat MySQL. MySQL dibaca MY-ES-KYOO-EL [maɪˌɛsˌkjuːˈɛl].</p>
-<h2 id="sejarah-mysql">SEJARAH MYSQL</h2>
-<p><img src="https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt=""><br>
-<small>image courtesy : <a href="https://www.pexels.com/@divinetechygirl">https://www.pexels.com/@divinetechygirl</a></small></p>
-<p>Beberapa orang bahkan membaca MySQL seperti sedang menyebutkan “my sequel”. MySQL AB, sebuah perusahaan asal Swedia, menjadi yang pertama dalam mengembangkan MySQL di tahun 1994. Hak kepemilikan MySQL kemudian diambil secara menyeluruh oleh perusahaan teknologi Amerika Serikat, Sun Microsystems, ketika mereka membeli MySQL AB pada tahun 2008. Di tahun 2010, Oracle yang adalah salah satu perusahaan teknologi terbesar di Amerika Serikat mengakuisisi Sun Microsystems. Semenjak itulah, MySQL sepenuhnya dimiliki oleh Oracle.</p>
-<h2 id="instalasi">Instalasi</h2>
-<p>Untuk menggunakan MYSQL pada localhost komputer kita, dibutuhkan sebuah software bernama <strong>MAMP</strong> / <strong>LAMPP</strong>/<strong>XAMPP</strong>.</p>
-<p>Bagi pengguna windows, sangat familiar penggunaan XAMPP, Huruf <strong>M</strong>, adalah singkatan Macos, dan <strong>L</strong> adalah Linux, dan <strong>X</strong> adalah multi platform alias X-ross Platform.</p>
-<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/6xkzlgl8odo6wd9spg75.png" alt="Alt Text"><br>
-<small>uploaded in <a href="https://dev.to">https://dev.to</a></small></p>
-<p>Okay di JVALLEY kita akan sama sama menggunakan sebuah software bernama XAMPP silakan install di <a href="https://www.apachefriends.org/index.html">Link Berikut</a></p>
-<p>Silakan install seperti biasa, dan jalankan servernya…</p>
-<p>Setelah server berjalan, teman teman akan di munculkan sebuah halaman web milik apache web server.</p>
-<blockquote>
-<p>Pastikan XAMPP Server sudah berjalan dan di centang mysql dan apachenya</p>
-</blockquote>
-<h2 id="php-my-admin">PHP MY ADMIN</h2>
-<p>Php My Admin merupakan sebuah web base server dashboard untuk pengaturan database kita. Semua proses pembuatan database, dan edit edit bisa di lakukan disini.</p>
-<p>Silakan akses php myadmin dengan cara mengetikan <a href="http://localhost/phpmyadmin">http://localhost/phpmyadmin</a> pada browser teman teaman.</p>
-<blockquote>
-<p>Periksa port yang berjalan di system apache teman teamn.<br>
-Untuk yang port apachenya berbeda, silakan teambahkan titik2 ( : ) dan portnya setelah localhost, misal <a href="http://localhost:8888/phpmyadmin">http://localhost:8888/phpmyadmin</a></p>
-</blockquote>
-<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/ab6nmnn4t6aotri6cy5p.png" alt="Alt Text"><br>
-<small>uploaded in <a href="https://dev.to">https://dev.to</a></small></p>
-<blockquote>
-<p>Meski tampilannya agak jadul, tapi PHP My admin adalah web base dasboard paling popular bagi pengguna database MYSQL hingga saat ini.</p>
-</blockquote>
-<h3 id="mebuat-database-baru-dengan-php-my-admin">Mebuat database baru dengan php my admin</h3>
-<p>Okay sekarang kita akan membuat sebuah database baru dengan nama <strong>jvalleymember</strong>.</p>
-<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/qtc0fms2ouo3f7wr8h9a.png" alt="Alt Text"></p>
-<p>Silakan click Text <strong>New</strong> di panel sebelah kiri layar,<br>
-dan pada panel tengah silakan isikan form database name dengan <strong>jvalleymember</strong></p>
-<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/zhwrnuebw27opzyg39jq.png" alt="Alt Text"></p>
-<p>Langsung saja click create dan jvalley member database sudah berhasil dibuat, silakan check panel sebelah kiri kembali dan lihat sudah muncul jvalleymeber.</p>
-<h3 id="membuat-table-pada-database">Membuat Table pada database</h3>
-<p>Silakan click di panel sebelah kiri, dan pilih <em>jvalleymember</em> panel kanan akan berubah ke create table panel, ketikan nama <strong>users</strong> pada kolom new table. dan pada <em>Number of Column</em> silakan masukan angka 5.<br>
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/9u13yzx2kbfgiimukhb4.png" alt="Alt Text"></p>
-<p>Langsung saja create dengan menekan tombol <em>go</em> yang ada di sebelah ujung kanan.</p>
-<p>Atur table pertama dengan type data <em>INT</em> value kosongkan dan atur ID ini sebagai <em>Primary Key</em><br>
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/46xasl1e1khspoyq48z5.png" alt="Alt Text"></p>
-<p>Sisanya silakan ikuti gambar dibawah ini :<br>
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jhf6eljdbrgr4cwayv0w.png" alt="Alt Text"></p>
-<p>Dan silakan tekan <strong>SAVE</strong>, dan table users akan berhasil di tambahkan ke database <em>jvalleymember</em></p>
-<h2 id="access-mysql-via-cli">Access MYSQL via CLI</h2>
-<p>Silakan buka terminal dan ketikan</p>
-<pre><code>mysql -u root -p
-</code></pre>
-<p>Ketika ditanyakan password silakan kosongkan dan tekan <strong>ENTER</strong></p>
-<p>cursor akan berubah menjadi <code>mysql&gt;</code><br>
-tandanya teman teman sudah berhasil masuk ke dalam MYSQL CLI.</p>
-<h3 id="melihat-seluruh-data-yang-ada-di-mysql">Melihat seluruh data yang ada di MYSQL</h3>
-<p>Untuk melihat semua database yang tersedia di MYSQL kita, silakan teman teman ketik :<br>
-<code>SHOW DATABASES;</code></p>
-<blockquote>
-<p>Titik koma pada akhir statent sifatnya wajib<br>
-akan tetapi penggunaan Capital tidak wajib</p>
-</blockquote>
-<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/l4cn5dzdwh5lk9541h96.png" alt="Alt Text"></p>
-<p>Teman teman bisa lihat, database yang sebelumnya kita buat di php my admin sudah ada juga disini.</p>
-<h3 id="menambahkan-database-ke-dalam-table-users">Menambahkan database ke dalam table users</h3>
-<p>Sekarang kita coba untuk menambahkan satu data ke dalam table <strong>users</strong> yang ada di database jvalleymember.</p>
-<p>Silakan ketikan syntax berikut</p>
-<pre class=" language-mysql"><code class="prism  language-mysql">insert into jvalleymember.users(email, username, password, phone) values("fadliselaz@gmail.com", "fadliselaz", "12341234", "081214123123");
-</code></pre>
-<blockquote>
-<p>Silakan masukan data setelah values( dengan data teman teamn sendiri…<br>
-<img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/myilm865i38rpb6bceoc.png" alt="Alt Text"></p>
-</blockquote>
-<p>Jika muncul gambar seperti di atas, artinya teman teman berhasil menambah satu data ke dalam table users. Silakan tambahkan beberapa data lainnya.</p>
-<h2 id="show-table-user">Show table user</h2>
-<p>untuk melihat semua data yang ada di table users silakan ketik</p>
-<pre><code>select * from jvalleymember.users;
-</code></pre>
-<p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/oly027xnfnadc33n9cud.png" alt="Alt Text"></p>
-<h2 id="update-data-pada-tabel-users">Update data pada tabel users</h2>
-<p>Kita akan mengedit username pada row dengan id 1 dengan cara :</p>
-<pre><code>UPDATE jvalleymember.users SET username="evalia" WHERE id=1;
-</code></pre>
-<h2 id="delete-data-dari-table-users">Delete Data dari table users</h2>
-<p>Untuk mendelete data pada table, silakan dengan cara :</p>
-<pre><code>DELETE FROM jvalleymember.users WHERE id=1;
-</code></pre>
-<p>Okay, sampai disini dulu ya gengs… <em>Good Luck</em></p>
+Ya, syntax diatas merupakan sebuah query language pada DBMS MYSQL. nah untuk di express, kita bisa mempermudah query language tersebut dengan bantuan **query builder** bernama _KNEX_.
 
+Knex memungkinkan kita mengunakan query language bawaan pada MYSQL dengan lebih ringkas.
+Silakan teman teman buat sebuah project nodejs dan install beberapa package seperti dibawah ini :
+
+```bash
+npm install --save express express-handlebars cors knex
+```
+
+Buat sebuah file bernama **server.js** dan buat sebuah skema express seperti yang sudah teman teman pelajari.
+
+- [ ] Ubah package.json bagian test menjadi dev
+- [ ] Pada file server.js import semua kebutuhan project
+- [ ] Buat Middleware
+- [ ] Set Template Engine
+- [ ] Buat Routing
+- [ ] Buat Listener
+- [ ] Buat Folder Public, Views, Controller dan Model
+- [ ] isi public dengan kebutuhan static seperti css dan javascript client
+- [ ] isi views dengan kebutuhan template engine kita
+- [ ] isi folder controller dengan file bernama _homeController.js_
+- [ ] isi folder Model dengan file bernama _AbsenSiswaModel.js_ dan _connection.js_
+- [ ] Pada _server.js_ silakan isi dengan default configuration yang sudah kita pelajari
+
+Buat sekumpulan statment untuk import package ke dalam applikasi kita
+<small>server.js</small>
+
+```javascript
+const express = require("express");
+const cors = require("cors");
+const hbs = require("express-handlebars");
+const path = require("path");
+const app = express();
+const home = require("./controllers/homeControllers");
+```
+
+Buat sekumpulan statment untuk middleware
+<small>server.js</small>
+
+```javascript
+app.use(cors());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static(path.join(__dirname, "public")));
+```
+
+Buat sekumpulan statment untuk setup view engine
+<small>server.js</small>
+
+```javascript
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "html");
+app.engine(
+  "html",
+  hbs({
+    layoutsDir: path.join(__dirname, "views/layouts"),
+    partialsDir: path.join(__dirname, "views/components"),
+    defaultLayout: "main_layout.html",
+    extname: "html",
+  })
+);
+```
+
+Buat sekumpulan statment untuk Routing
+<small>server.js</small>
+
+```javascript
+app.use("/", home);
+```
+
+Buat sekumpulan statment untuk Listener
+<small>server.js</small>
+
+```javascript
+app.listen(3000, () => console.log("listen port 3000"));
+```
+
+# Model
+
+![](https://images.pexels.com/photos/3683056/pexels-photo-3683056.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)
+Model merupakan sekumpulan function untuk menghubungkan logic dengan database, untuk koneksi ke database kita menggunakan sebuah query builder bernama **knex**.
+
+Buat sebuah folder bernama model, dan buat 2 buah file bernama _AbsenSiswaModel.js_ dan _connection.js_.
+File **connection.js** akan berisi statment untuk mengkoneksikan project kita ini dengna database.
+
+<small>/model/connection.js</small>
+
+```javascript
+const db = require("knex")({
+  client: "mysql",
+  connection: {
+    host: "127.0.0.1",
+    user: "root",
+    password: "root",
+    database: "absenSiswa",
+    port: 3306,
+  },
+});
+
+module.exports = db;
+```
+
+Silakan buka file **AbsenSiswaModel.js** dan isi dengan code berikut :
+<small>/model/AbsenSiswaModel.js</small>
+
+```javascript
+//import connection
+const db = require("./connection");
+
+//mendapatkan semua data siswa
+const getAllSiswa = async () => {
+  return await db
+    .from("siswa")
+    .select("*")
+    .then((rows) => {
+      return rows;
+    });
+};
+
+//export semua function
+module.exports = { getAllSiswa };
+```
+
+# Controller
+
+![](https://images.pexels.com/photos/892543/pexels-photo-892543.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)
+Pada sebuah project MVC, fungsi controller adalah untuk menghubungkan jalur jalur data, yang bisa di tampilkan ke client.
+Silakan teman teman ke sebuah folder yang sudah kita buat bernama controller, dan buat sebuah file bernama _homeController.js_.
+
+Import package yang kita butuhkan :
+<small>/controller/homeController.js</small>
+
+```javascript
+const express = require("express");
+const home = express.Router();
+const { getAllSiswa } = require("../model/AbsenSiswaModel");
+```
+
+Buat sebuah function untuk menangani controller ke sebuah url "/"
+<small>/controller/homeController.js</small>
+
+```javascript
+home.get("/", (req, res) => {
+  getAllSiswa().then((result) => {
+    res.json(result);
+  });
+});
+```
+
+# View
+
+![](https://images.pexels.com/photos/1323550/pexels-photo-1323550.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500)
+Oke kita akan buat tampilan pada browser pada folder view, silakan buat 2 buah folder lagi di dalam folder views bernama **components** dan **layouts**. jangan lupa buat file bernama **home.html** pada default directory views.
+
+Pertama kita harus membuat sebuah default layouts, buat sebuah file bernama **main_layout.html** didalam sebuah folder bernama _layouts_. Silakan isi dengan html sebagai berikut.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Express Mysql</title>
+  </head>
+  <body>
+    {{{ body }}}
+    <script src="main.js"></script>
+  </body>
+</html>
+```
+
+dan silakan buka file bernama **home.html** pada default directory views, dan masukan code berikut:
+
+```html
+<main class="container-fluid flex-center">
+  <h1>Welcome home</h1>
+</main>
+```
+
+## Menampilkan Hasil fetch database ke View
+
+Okay teman teman, sekarang kita akan tampilkan data dari database ke view.
+
+Silakan ke file _/controller/homeController.js_ dan ubah routing seperti di bawah ini :
+
+```javascript
+home.get("/", (req, res) => {
+  getAllSiswa().then((result) => {
+    res.render("home", { data: result });
+  });
+});
+```
+
+Perhatikan code di atas, kita merender ke sebuah file html berikut mengirimkan data dengan variable result sebagai aliasnya.
+
+Sekarang silakan teman teman buka file view dan buat seperti di bawah ini :
+
+```javascript
+<main class="container-fluid flex-center">
+  <table class="siswa_list">
+      <thead>
+          <tr>
+              <td>ID</td>
+              <td>NAMA</td>
+              <td>EMAIL</td>
+              <td>PHONE</td>
+              <td>BATCH</td>
+              <td>DATE</td>
+          </tr>
+        </thead>
+        <tbody>
+            {{#each data}}
+                <tr>
+                    <td>{{this.id}}</td>
+                    <td>{{this.nama}}</td>
+                    <td>{{this.email}}</td>
+                    <td>{{this.telpon}}</td>
+                    <td>{{this.batch}}</td>
+                    <td name="{{this.date}}" class="date" id="{{this.id}}">{{this.date}}</td>
+                    <input type="hidden" class="res_date{{this.id}}" value="{{this.date}}">
+                </tr>
+            {{/each}}
+        </tbody>
+  </ul>
+</main>
+```
+
+# Menbuat form absen dan memasukan data ke database
+
+![Alt Text](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/z68fxb5pdim5pl453p8v.png)
+
+Silakan teman teman buka folder /views/components dan buat sebuah component baru bernama **formAbsen.html**
+
+<small>/views/components/formAbsen.html</small>
+
+```html
+<form action="/absen" class="form_absen" method="POST">
+  <div class="form_group">
+    <label for="nama">nama</label>
+    <input type="text" id="nama" name="nama" required />
+  </div>
+
+  <div class="form_group">
+    <label for="email">email</label>
+    <input type="email" id="email" name="email" required />
+  </div>
+
+  <div class="form_group">
+    <label for="telpon">telpon</label>
+    <input type="phone" id="telpon" name="telpon" required />
+  </div>
+
+  <div class="form_group">
+    <label for="batch">batch</label>
+    <input type="number" id="batch" name="batch" required />
+  </div>
+
+  <button type="submit">absen</button>
+</form>
+```
+
+Kita buat sebuah form untuk mengisi data ke database.
+
+> Jangan lupa untuk memberikan sebuah property method="POST", karena kita akan melakukan post ke database
+
+Selanjutnya silakan teman teman ke sebuah file bernama **absenSiswaModel.js**
+dan tambahkan sebuah statment model seperti dibawah ini :
+
+```javascript
+//menambahkan absen
+const storeAbsen = async (data) => {
+  return await db
+    .from("siswa")
+    .insert({
+      nama: data.nama,
+      email: data.email,
+      telpon: data.telpon,
+      batch: data.batch,
+    })
+    .then((rows) => {
+      return rows;
+    })
+    .catch((err) => console.log(err));
+};
+```
+
+Perhatikan code di atas, kita telah membuah sebuah function _ASYNCRONUS_ bernama **storeAbsen**, yang di dalamnya mengembalikan sebuah function connection ke database menggunakan knex _INSERT_.
+
+Selanjutnya jangan lupa export function tersebut agar bisa di gunakan di file controller.
+
+```javascript
+//export semua function
+module.exports = { getAllSiswa, storeAbsen };
+```
+
+Okay, saatnya kita mengatur controller untuk menambahkan data ini, silakan teman teman buka sebuah file **/controller/homeController.js** dan tambah kan sebuah route baru :
+
+```javascript
+home.post("/absen", (req, res) => {
+  let nama = req.body.nama;
+  let email = req.body.email;
+  let telpon = req.body.telpon;
+  let batch = req.body.batch;
+
+  storeAbsen({
+    nama: nama,
+    email: email,
+    telpon: telpon,
+    batch: batch,
+  }).then((result) => {
+    res.redirect("/");
+  });
+});
+```
+
+> Bisa dilihat di code diatas bahwa kita menggunakan home.post bukan get, karena form data yang kita kirimkan mempunyai method POST
+
+Selanjutnya kita tinggal tambahkan partial file atau component pada file **/views/home.html** seperti contoh di bawah ini.
+
+```html
+{{> formAbsen}}
+```
+
+letakan dimanapun karena kita akan atur cssnya menjadi fixed.
+
+Terakhir kita bisa menambahkan css ke file **public/style.css** :
+
+```css
+.form_absen {
+  width: 250px;
+  height: auto;
+  padding: 20px;
+  background-color: whitesmoke;
+  border: 0.5px solid gray;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+}
+
+.form_group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+```
