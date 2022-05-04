@@ -1,5 +1,4 @@
 # Jvalley Bootcamp
-Bootcamp Pemograman gratis
 <img width="725" alt="karier2" src="https://user-images.githubusercontent.com/56766364/166833234-7f4af139-fee5-40de-92b0-dde9390339cc.png">
 
 
